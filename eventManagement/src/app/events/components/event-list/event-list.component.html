@@ -1,1 +1,9 @@
-<p>event-list works!</p>
+<app-dialog (eventFormData)="getFormData($event)"></app-dialog>
+<div *ngIf="_eventList.length" class="event-container">
+  <div *ngFor="let item of _eventList">
+    <app-event-card
+      [eventData]="item"
+      (toDeleteCardId)="getCardId($event)"
+    ></app-event-card>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div *ngIf="eventData" class="event-card-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ eventData.title }}</mat-card-title>
+      <mat-card-subtitle>{{ eventData.location }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="date-info">
+        {{ eventData.date | date }}
+      </div>
+      <div>
+        {{ eventData.description }}
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end" mat-dialog-actions>
+      <button mat-button color="primary" (click)="editCard(eventData.id)">
+        Edit
+      </button>
+      <button mat-button color="warn" (click)="deleteCard(eventData)">
+        Delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <br />
+</div>

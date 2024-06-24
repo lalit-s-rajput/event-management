@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -10,6 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class DialogContentComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogContentComponent>) {}
   eventForm!: FormGroup;
+
   ngOnInit(): void {
     this.eventForm = new FormGroup({
       title: new FormControl('', Validators.required),
@@ -21,7 +22,7 @@ export class DialogContentComponent implements OnInit {
   onSubmit() {
     if (this.eventForm?.valid) {
       console.log(this.eventForm.value);
-      this.dialogRef.close();
+      this.dialogRef.close(this.eventForm.value);
     }
   }
   closeDialog() {
