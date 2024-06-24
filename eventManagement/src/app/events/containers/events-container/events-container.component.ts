@@ -17,4 +17,7 @@ export class EventsContainerComponent {
   deleteCard(id: number) {
     this.eventService.deleteEvent(id);
   }
+  editedEventForm(data: any) {
+    this.eventService.editEvent(data);
+  }
 }

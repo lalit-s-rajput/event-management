@@ -7,8 +7,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class EventListComponent {
   _eventList: any;
+  _openWithData: any;
   constructor() {}
   @Output() eventFormData = new EventEmitter();
+  @Output() editedEventForm = new EventEmitter();
   @Output() eventCardId = new EventEmitter<number>();
   @Input() set eventList(data: any) {
     this._eventList = data;
@@ -18,5 +20,11 @@ export class EventListComponent {
   }
   getCardId(id: number) {
     this.eventCardId.emit(id);
+  }
+  editCard(data: any) {
+    this._openWithData = { ...data }; // added this because every time we want to open edit dialog
+  }
+  editedEventFormData(data: any) {
+    this.editedEventForm.emit(data);
   }
 }

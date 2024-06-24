@@ -49,4 +49,10 @@ export class EventsService {
     });
     this.eventsData$.next(eventData);
   }
+  editEvent(data: any) {
+    let eventItem = this.eventsData$.value.find((item: any) => {
+      return item.id === data.id;
+    });
+    if (eventItem) eventItem = Object.assign(eventItem, data);
+  }
 }
