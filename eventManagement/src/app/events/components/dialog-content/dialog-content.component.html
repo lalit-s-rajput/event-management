@@ -13,7 +13,14 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="date" placeholder="date" />
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="date" matInput [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
@@ -26,9 +33,16 @@
   </div>
 
   <div mat-dialog-actions>
-    <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>
+    <button mat-button color="primary" [disabled]="!eventForm.valid">
       Save
     </button>
-    <button mat-button color="primary" (click)="closeDialog()">Close</button>
+    <button
+      mat-button
+      color="warn"
+      [mat-dialog-close]="true"
+      (click)="closeDialog()"
+    >
+      Close
+    </button>
   </div>
 </form>
