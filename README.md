@@ -1,6 +1,6 @@
 # event-management
-Intelliveer angular challenge related to event-management
-Orderwise Task completion:
+Intelliveer angular challenge related to event-management <br />
+Orderwise Task completion: <br />
 1 - Create Basic Project structure <br />   
 2 - Add angular Material  <br />
 3 - Create popup component to add and edit event info including addition of date picker component <br />
