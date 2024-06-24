@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { EventsService } from '../../services/events.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-event-list',
@@ -7,5 +6,25 @@ import { EventsService } from '../../services/events.service';
   styleUrls: ['./event-list.component.scss'],
 })
 export class EventListComponent {
-  constructor(private eventService: EventsService) {}
+  _eventList: any;
+  _openWithData: any;
+  constructor() {}
+  @Output() eventFormData = new EventEmitter();
+  @Output() editedEventForm = new EventEmitter();
+  @Output() eventCardId = new EventEmitter<number>();
+  @Input() set eventList(data: any) {
+    this._eventList = data;
+  }
+  getFormData(data: any) {
+    this.eventFormData.emit(data);
+  }
+  getCardId(id: number) {
+    this.eventCardId.emit(id);
+  }
+  editCard(data: any) {
+    this._openWithData = { ...data }; // added this because every time we want to open edit dialog
+  }
+  editedEventFormData(data: any) {
+    this.editedEventForm.emit(data);
+  }
 }

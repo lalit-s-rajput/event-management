@@ -1,1 +1,6 @@
-<app-dialog></app-dialog>
+<app-event-list
+  [eventList]="eventListData$ | async"
+  (eventFormData)="getEventData($event)"
+  (eventCardId)="deleteCard($event)"
+  (editedEventForm)="editedEventForm($event)"
+></app-event-list>
