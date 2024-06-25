@@ -9,6 +9,7 @@ import { DialogContentComponent } from '../dialog-content/dialog-content.compone
 export class DialogComponent {
   constructor(public dialog: MatDialog) {}
   DialogRef!: MatDialogRef<DialogContentComponent>;
+  searchValue: string = '';
   @Input() set openWithData(data: any) {
     if (data) {
       this.openDialogWithData(data);
@@ -16,6 +17,12 @@ export class DialogComponent {
   }
   @Output() eventFormData = new EventEmitter();
   @Output() editedEventFormData = new EventEmitter();
+  @Output() searchData = new EventEmitter();
+  getSearchValue() {
+    //if (this.searchValue.length > 0) {
+    this.searchData.emit(this.searchValue);
+    //}
+  }
   openDialog() {
     if (!this.dialog.openDialogs.length) {
       this.DialogRef = this.dialog.open(DialogContentComponent, {

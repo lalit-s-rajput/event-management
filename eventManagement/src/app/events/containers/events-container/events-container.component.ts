@@ -20,4 +20,7 @@ export class EventsContainerComponent {
   editedEventForm(data: any) {
     this.eventService.editEvent(data);
   }
+  getSearchString(inputString: string) {
+    this.eventService.filterBasedOnSearch(inputString);
+  }
 }
