@@ -11,4 +11,7 @@ Order wise Task completion: <br />
 
 ![image](https://github.com/lalit-s-rajput/event-management/assets/67156745/450f8cdd-9228-4bf7-b79e-f6578cee9509)
 
+![image](https://github.com/lalit-s-rajput/event-management/assets/67156745/13d9a4c9-d5bd-4443-a67c-55f59c4224f3)
+
+
 
