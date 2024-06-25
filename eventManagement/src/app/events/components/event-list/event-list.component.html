@@ -5,11 +5,18 @@
   [openWithData]="_openWithData"
 ></app-dialog>
 <div *ngIf="_eventList.length" class="event-container">
-  <div *ngFor="let item of _eventList">
+  <div *ngFor="let item of slicedData">
     <app-event-card
       [eventData]="item"
       (toDeleteCardId)="getCardId($event)"
       (editCardData)="editCard($event)"
     ></app-event-card>
   </div>
+  <mat-paginator
+    [length]="_eventList.length"
+    [pageSize]="2"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="OnPageChange($event)"
+  >
+  </mat-paginator>
 </div>
