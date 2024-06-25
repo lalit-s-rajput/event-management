@@ -19,9 +19,7 @@ export class DialogComponent {
   @Output() editedEventFormData = new EventEmitter();
   @Output() searchData = new EventEmitter();
   getSearchValue() {
-    //if (this.searchValue.length > 0) {
     this.searchData.emit(this.searchValue);
-    //}
   }
   openDialog() {
     if (!this.dialog.openDialogs.length) {
