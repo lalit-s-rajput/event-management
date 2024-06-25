@@ -35,7 +35,6 @@ export class EventListComponent {
     this.searchString.emit(inputString);
   }
   OnPageChange(data: any) {
-    console.log(data);
     const startIndex = data.pageIndex * data.pageSize;
     let endIndex = startIndex + data.pageSize;
     if (endIndex > this._eventList.length) {
