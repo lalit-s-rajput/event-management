@@ -31,28 +31,49 @@ export class EventsService {
     },
   ];
   eventsData$: any = new BehaviorSubject(this.initialData);
+  originalDataSet$: any = new BehaviorSubject([]);
   globalIdValue$: BehaviorSubject<number> = new BehaviorSubject(
     this.initialData.length
   );
   constructor() {}
   getEventsData() {
+    this.originalDataSet$.next(this.eventsData$.value);
     return this.eventsData$;
   }
   setEventData(data: any) {
     this.globalIdValue$.next(this.globalIdValue$.value + 1);
     data.id = this.globalIdValue$.value;
     this.eventsData$.value.push(data);
+    this.originalDataSet$.next(this.eventsData$.value);
   }
   deleteEvent(id: number) {
     const eventData = this.eventsData$.value.filter((item: any) => {
       return item.id !== id;
     });
     this.eventsData$.next(eventData);
+    this.originalDataSet$.next(this.eventsData$.value);
   }
   editEvent(data: any) {
     let eventItem = this.eventsData$.value.find((item: any) => {
       return item.id === data.id;
     });
-    if (eventItem) eventItem = Object.assign(eventItem, data);
+    if (eventItem) {
+      eventItem = Object.assign(eventItem, data);
+      this.originalDataSet$.next(this.eventsData$.value);
+    }
+  }
+  filterBasedOnSearch(searchData: string) {
+    if (!searchData.length) {
+      this.eventsData$.next(this.originalDataSet$.value);
+    } else {
+      let dataLowerCase = searchData.toLowerCase();
+      const eventData = this.originalDataSet$.value.filter((item: any) => {
+        return (
+          item.title.toLowerCase().includes(dataLowerCase) ||
+          item.location.toLowerCase().includes(dataLowerCase)
+        );
+      });
+      this.eventsData$.next(eventData);
+    }
   }
 }

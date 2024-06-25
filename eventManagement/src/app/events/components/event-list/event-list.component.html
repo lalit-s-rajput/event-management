@@ -1,6 +1,7 @@
 <app-dialog
   (eventFormData)="getFormData($event)"
   (editedEventFormData)="editedEventFormData($event)"
+  (searchData)="getSearchData($event)"
   [openWithData]="_openWithData"
 ></app-dialog>
 <div *ngIf="_eventList.length" class="event-container">

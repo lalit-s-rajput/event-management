@@ -3,14 +3,10 @@ import { CommonModule } from '@angular/common';
 import * as fromComponents from './components';
 import * as fromContainers from './containers';
 import { MaterialModule } from '../material/material.module';
-import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [
-    fromContainers.containers,
-    fromComponents.components,
-    DialogContentComponent,
-  ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+  declarations: [fromContainers.containers, fromComponents.components],
+  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
 })
 export class EventsModule {}

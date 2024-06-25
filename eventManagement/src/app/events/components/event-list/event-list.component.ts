@@ -12,6 +12,7 @@ export class EventListComponent {
   @Output() eventFormData = new EventEmitter();
   @Output() editedEventForm = new EventEmitter();
   @Output() eventCardId = new EventEmitter<number>();
+  @Output() searchString = new EventEmitter<string>();
   @Input() set eventList(data: any) {
     this._eventList = data;
   }
@@ -26,5 +27,8 @@ export class EventListComponent {
   }
   editedEventFormData(data: any) {
     this.editedEventForm.emit(data);
+  }
+  getSearchData(inputString: string) {
+    this.searchString.emit(inputString);
   }
 }
