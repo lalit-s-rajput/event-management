@@ -1,7 +1,9 @@
-<app-event-list
-  [eventList]="eventListData$ | async"
-  (eventFormData)="getEventData($event)"
-  (eventCardId)="deleteCard($event)"
-  (editedEventForm)="editedEventForm($event)"
-  (searchString)="getSearchString($event)"
-></app-event-list>
+<div *ngIf="eventListData$!.value.length">
+  <app-event-list
+    [eventList]="eventListData$ | async"
+    (eventFormData)="getEventData($event)"
+    (eventCardId)="deleteCard($event)"
+    (editedEventForm)="editedEventForm($event)"
+    (searchString)="getSearchString($event)"
+  ></app-event-list>
+</div>

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogContentComponent } from '../dialog-content/dialog-content.component';
+import { EventData } from 'src/app/core/interface/interface';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -10,7 +11,7 @@ export class DialogComponent {
   constructor(public dialog: MatDialog) {}
   DialogRef!: MatDialogRef<DialogContentComponent>;
   searchValue: string = '';
-  @Input() set openWithData(data: any) {
+  @Input() set openWithData(data: EventData) {
     if (data) {
       this.openDialogWithData(data);
     }
@@ -34,7 +35,7 @@ export class DialogComponent {
       });
     }
   }
-  openDialogWithData(data: any) {
+  openDialogWithData(data: EventData) {
     this.DialogRef = this.dialog.open(DialogContentComponent, {
       width: '600px',
       autoFocus: true,

@@ -4,7 +4,7 @@
   (searchData)="getSearchData($event)"
   [openWithData]="_openWithData"
 ></app-dialog>
-<div *ngIf="_eventList.length" class="event-container">
+<div *ngIf="_eventList?.length" class="event-container">
   <div *ngFor="let item of slicedData">
     <app-event-card
       [eventData]="item"
@@ -13,7 +13,7 @@
     ></app-event-card>
   </div>
   <mat-paginator
-    [length]="_eventList.length"
+    [length]="_eventList?.length"
     [pageSize]="2"
     [pageSizeOptions]="pageSizeOptions"
     (page)="OnPageChange($event)"
