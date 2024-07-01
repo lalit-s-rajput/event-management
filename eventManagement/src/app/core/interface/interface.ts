@@ -5,3 +5,6 @@ export interface EventData {
   location: string;
   description: string;
 }
+export interface EventsData {
+  results: EventData[];
+}

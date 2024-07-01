@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { EventData } from 'src/app/core/interface/interface';
+import { EventData, EventsData } from 'src/app/core/interface/interface';
 
 @Component({
   selector: 'app-event-list',
@@ -7,7 +7,7 @@ import { EventData } from 'src/app/core/interface/interface';
   styleUrls: ['./event-list.component.scss'],
 })
 export class EventListComponent {
-  _eventList: EventData[] | null = null;
+  _eventList!: EventData[];
   _openWithData!: EventData;
   pageSizeOptions = [3, 6, 9];
   slicedData: EventData[] | undefined = undefined;
@@ -17,7 +17,7 @@ export class EventListComponent {
   @Output() eventCardId = new EventEmitter<number>();
   @Output() searchString = new EventEmitter<string>();
   @Input() set eventList(data: EventData[] | null) {
-    this._eventList = data;
+    this._eventList = data ?? [];
     this.slicedData = this._eventList?.slice(0, 2);
   }
   getFormData(data: EventData) {

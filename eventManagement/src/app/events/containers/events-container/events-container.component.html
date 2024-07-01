@@ -1,4 +1,4 @@
-<div *ngIf="eventListData$!.value.length">
+<div>
   <app-event-list
     [eventList]="eventListData$ | async"
     (eventFormData)="getEventData($event)"
