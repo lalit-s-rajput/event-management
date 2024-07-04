@@ -4,7 +4,7 @@
   (searchData)="getSearchData($event)"
   [openWithData]="_openWithData"
 ></app-dialog>
-<div *ngIf="_eventList.length" class="event-container">
+<div *ngIf="_eventList" class="event-container">
   <div *ngFor="let item of slicedData">
     <app-event-card
       [eventData]="item"
