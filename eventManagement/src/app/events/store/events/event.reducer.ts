@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { EventData, EventsData } from 'src/app/core/interface/interface';
-import { getEvents } from './event.action';
+import { deleteEvent, editEvent, getEvents } from './event.action';
 import { state } from '@angular/animations';
 export const initialState: EventsData = {
   results: [
@@ -37,6 +37,29 @@ export const eventReducer = createReducer(
     return {
       ...state,
       results: [...state.results],
+    };
+  }),
+  on(deleteEvent, (state, payload) => {
+    let allEventData = [...state.results];
+    let remainingEvents = allEventData.filter((item: EventData) => {
+      return item.id !== payload.id;
+    });
+    return {
+      ...state,
+      results: remainingEvents,
+    };
+  }),
+  on(editEvent, (state, payload) => {
+    let allEventData = [...state.results];
+    /**
+     * sending changed object instead of modifying one
+     */
+    let remainingEvents = allEventData.map((item: EventData) => {
+      return item.id === payload.eventData.id ? payload.eventData : item;
+    });
+    return {
+      ...state,
+      results: [...remainingEvents],
     };
   })
 );

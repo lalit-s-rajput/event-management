@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Store } from '@ngrx/store';
 import { selectEventData } from '../../store/events/event.selector';
 import { Observable } from 'rxjs';
+import { deleteEvent, editEvent } from '../../store/events/event.action';
 
 @Component({
   selector: 'app-events-container',
@@ -18,17 +19,19 @@ export class EventsContainerComponent implements OnInit {
     private eventService: EventsService
   ) {}
   ngOnInit(): void {
-    //this.eventListData$ = this.store.select('event');
-    this.eventListData$ = this.store.select(selectEventData); //this.eventService.getEventsData();
+    //this.eventListData$ = this.eventService.getEventsData();
+    this.eventListData$ = this.store.select(selectEventData);
   }
   getEventData(data: EventData) {
     this.eventService.setEventData(data);
   }
   deleteCard(id: number) {
-    this.eventService.deleteEvent(id);
+    //this.eventService.deleteEvent(id);
+    this.store.dispatch(deleteEvent({ id: id }));
   }
   editedEventForm(data: EventData) {
-    this.eventService.editEvent(data);
+    //this.eventService.editEvent(data);
+    this.store.dispatch(editEvent({ eventData: data }));
   }
   getSearchString(inputString: string) {
     this.eventService.filterBasedOnSearch(inputString);
